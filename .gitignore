@@ -1,0 +1,24 @@
+# Secrets and local overrides
+.env
+*.env
+
+# Backup files
+*.bak
+*.tmp
+
+# Python / IDE artifacts
+__pycache__/
+*.pyc
+.DS_Store
+.vscode/
+.idea/
+
+# Local runtime data
+*.log
+
+# Keep the empty addons mount target, but ignore its contents
+/docker/odoo_addons/*
+!/docker/odoo_addons/.gitkeep
+
+# Kilo extension runtime (not part of the project)
+.kilo/

@@ -1,0 +1,111 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: odoo_postgres
+    environment:
+      - POSTGRES_DB=odoo
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - LANG=cs_CZ.UTF-8
+      - LC_ALL=cs_CZ.UTF-8
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d:ro
+    entrypoint: >
+      bash -c "
+      grep -qF 'cs_CZ.UTF-8 UTF-8' /etc/locale.gen || echo 'cs_CZ.UTF-8 UTF-8' >> /etc/locale.gen &&
+      locale-gen &&
+      exec docker-entrypoint.sh postgres
+      -c shared_buffers=1GB
+      -c effective_cache_size=3GB
+      -c maintenance_work_mem=256MB
+      -c work_mem=32MB
+      -c max_connections=20
+      -c huge_pages=off
+      "
+    healthcheck:
+      test: >
+        pg_isready -U odoo -d odoo &&
+        psql -U odoo -d odoo -tAc "SELECT 1 FROM pg_extension WHERE extname='vector'" | grep -q 1
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+    restart: unless-stopped
+    mem_limit: 4g
+    memswap_limit: 4g
+    cpus: "1.5"
+    networks:
+      - odoo-network
+
+  web:
+    image: odoo:19.0
+    container_name: odoo_erp
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=${PASSWORD}
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./odoo_addons:/mnt/extra-addons
+    restart: unless-stopped
+    mem_limit: 2.5g
+    memswap_limit: 2.5g
+    cpus: "1.5"
+    networks:
+      - odoo-network
+
+  whisper-api:
+    image: fedirz/faster-whisper-server:latest-cpu
+    container_name: ai_whisper_audio
+    environment:
+      - WHISPER_MODEL=small
+    volumes:
+      - whisper-models:/root/.cache/huggingface
+    restart: unless-stopped
+    mem_limit: 1g
+    memswap_limit: 1g
+    cpus: "1"
+    networks:
+      - odoo-network
+
+  automation-pipeline:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: ai_prompt_chaining
+    volumes:
+      - n8n-data:/home/node/.n8n
+    restart: unless-stopped
+    mem_limit: 1g
+    memswap_limit: 1g
+    cpus: "1"
+    networks:
+      - odoo-network
+
+  proxy:
+    image: nginx:alpine
+    container_name: odoo_proxy
+    depends_on:
+      - web
+    ports:
+      - "${PROXY_BIND_IP:?Set PROXY_BIND_IP in .env to the LXC/Tailscale IP}:80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: unless-stopped
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: "0.5"
+    networks:
+      - odoo-network
+
+volumes:
+  odoo-db-data:
+  odoo-web-data:
+  whisper-models:
+  n8n-data:
+
+networks:
+  odoo-network:
+    driver: bridge
