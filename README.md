@@ -4,12 +4,16 @@
   <img src="docs/assets/logo.png" alt="pve-node-iac logo" width="180" height="180">
 </p>
 
-> Infrastructure as Code (IaC) repository for provisioning, tuning, and orchestrating a Proxmox VE single-node home lab environment. This repository directly manages the bare-metal host configuration, the unprivileged nesting container layer, and the application deployment stack.
+> Design and Infrastructure as Code (IaC) artifacts for a proposed single-node Proxmox VE home lab, including host configuration, an unprivileged container layer, and an application deployment stack.
 
 ![Status: Pre-Alpha — Theoretical Research Phase](https://img.shields.io/badge/Status-Pre--Alpha_·_Research_Phase-orange?style=flat-square)
 ![Project Phase: Design & Feasibility Study](https://img.shields.io/badge/Phase-Design_&_Feasibility_Study-yellow?style=flat-square)
 ![Personal Project](https://img.shields.io/badge/Type-Personal_·_Home_Lab-blueviolet?style=flat-square)
 ![No Warranty](https://img.shields.io/badge/Warranty-Use_at_Own_Risk-lightgrey?style=flat-square)
+
+---
+
+> ⚠️ **Project status (October 2026): Paused.** This is a proposed Proxmox VE design that was never deployed or validated on real hardware. The repository is retained as a design and learning reference, not as a running or verified home-lab setup. Later headless, AI-assisted workflows are a separate path and do not replace the Proxmox, VM/LXC, or home-lab capabilities described here.
 
 ---
 
@@ -77,7 +81,7 @@ graph TD
 
 ## 📄 Description and Context
 
-A single-node Proxmox VE home lab on a Dell Optiplex 3060 (i5-9500T, 32 GB RAM, 480 GB SSD). The architecture consolidates a family multi-tenant KVM workstation layer with an AI-augmented ERP stack (Odoo 19 + PostgreSQL 16 + pgvector + n8n + faster-whisper) into unprivileged LXC nesting containers with strict resource caps and zero-exposure networking via Tailscale.
+A proposed single-node Proxmox VE home-lab design for a Dell Optiplex 3060-class system. It describes a virtual-machine layer alongside an application stack based on Odoo, PostgreSQL, automation, and media services, using unprivileged LXC containers, resource limits, and private-network access. These components are documented as a design; they have not been validated together on a deployed host.
 
 IaC artefacts live as real files in `docker/`, `proxmox/`, and `scripts/`. Each major area keeps its own README so the knowledge graph can scale without overloading this root page.
 

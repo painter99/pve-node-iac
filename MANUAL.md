@@ -1,6 +1,6 @@
-# Deployment Manual: PVE 9.2 on Dell Optiplex 3060
+# Proposed Deployment Procedure: PVE 9.2 on Dell Optiplex 3060
 
-This manual defines the exact steps for deploying, low-level tuning, and securing the Proxmox VE 9.2.2 hypervisor on Dell Optiplex 3060 (Micro/SFF) edge hardware. The goal is maximum efficiency of the 6-core CPU, strict management of 32 GB RAM, and a "Zero Exposure" security policy for a remote AI-ready ERP system (Odoo 19 + PostgreSQL 16).
+> **Reference only — not validated.** This document records a proposed procedure for Proxmox VE 9.2.2 on Dell Optiplex 3060 (Micro/SFF) hardware. The design was never deployed or tested end to end on real hardware. Commands and configurations below are unverified proposals; review them against current Proxmox documentation and your own environment before use. They are not a tested installation guide.
 
 > All IaC artefacts referenced below are materialized as real files in this repository. This manual tells you **where to place each file**. Do not copy-paste code from older notes — always use the canonical files in `docker/`, `proxmox/`, and `scripts/`.
 
