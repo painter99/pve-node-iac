@@ -6,20 +6,20 @@
 
 > Design and Infrastructure as Code (IaC) artifacts for a proposed single-node Proxmox VE home lab, including host configuration, an unprivileged container layer, and an application deployment stack.
 
-![Status: Paused — Design Reference](https://img.shields.io/badge/Status-Paused_·_Design_Reference-lightgrey?style=flat-square)
+![Status: Superseded by a Headless Workflow — Design Reference](https://img.shields.io/badge/Status-Superseded_by_Headless_Workflow_·_Design_Reference-lightgrey?style=flat-square)
 ![Project Phase: Design & Feasibility Study](https://img.shields.io/badge/Phase-Design_&_Feasibility_Study-yellow?style=flat-square)
 ![Personal Project](https://img.shields.io/badge/Type-Personal_·_Home_Lab-blueviolet?style=flat-square)
 ![No Warranty](https://img.shields.io/badge/Warranty-Use_at_Own_Risk-lightgrey?style=flat-square)
 
 ---
 
-> ⚠️ **Project status (October 2026): Paused.** This is a proposed Proxmox VE design that was never deployed or validated on real hardware. The repository is retained as a design and learning reference, not as a running or verified home-lab setup. Later headless, AI-assisted workflows are a separate path and do not replace the Proxmox, VM/LXC, or home-lab capabilities described here.
+> ⚙️ **Status (October 2026): Superseded as a project — retained as a design reference.** This Proxmox VE home-lab design was never deployed or validated on real hardware, and the target hardware was never acquired. The infrastructure need this project was meant to serve is now met differently: a headless, AI-assisted workflow orchestrated through the Agora app — see [agora-pro-setup](https://github.com/painter99/agora-pro-setup). That approach covers the author's current needs; it does not implement every capability this design proposed (for example the multi-VM workstation layer or the media server).
 
 ---
 
 ## ⚠️ Important Disclaimer
 
-This is a **personal design and learning project**. The proposed setup was never deployed or tested on real hardware.
+This is a **personal design and learning project**. The proposed setup was never deployed or tested on real hardware, and the repository is kept as a reference, not as a running setup.
 
 - **Educational value:** You may learn from the architecture, decisions, and patterns documented here.
 - **Not production-ready:** Code and configuration may contain errors, omissions, or outdated assumptions.
