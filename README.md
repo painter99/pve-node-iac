@@ -19,7 +19,7 @@
 
 ## ⚠️ Important Disclaimer
 
-This is a **personal / home lab project**. It is in a **pre-alpha research and design phase** — nothing here has been tested on real hardware yet.
+This is a **personal design and learning project**. The proposed setup was never deployed or tested on real hardware.
 
 - **Educational value:** You may learn from the architecture, decisions, and patterns documented here.
 - **Not production-ready:** Code and configuration may contain errors, omissions, or outdated assumptions.
@@ -27,7 +27,7 @@ This is a **personal / home lab project**. It is in a **pre-alpha research and d
 - **Verify before use:** If you are an IT professional considering any of these patterns, review the canonical IaC files yourself and validate against your own environment.
 - **Feedback welcome** but this project is not open for external contributions.
 
-> See [MANUAL.md](MANUAL.md) for the deployment tutorial and [docs/](docs/README.md) for architectural rationale.
+> See [MANUAL.md](MANUAL.md) for the unvalidated reference procedure and [docs/](docs/README.md) for the design rationale.
 
 ---
 
