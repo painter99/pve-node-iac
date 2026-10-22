@@ -6,7 +6,7 @@
 
 > Design and Infrastructure as Code (IaC) artifacts for a proposed single-node Proxmox VE home lab, including host configuration, an unprivileged container layer, and an application deployment stack.
 
-![Status: Pre-Alpha — Theoretical Research Phase](https://img.shields.io/badge/Status-Pre--Alpha_·_Research_Phase-orange?style=flat-square)
+![Status: Paused — Design Reference](https://img.shields.io/badge/Status-Paused_·_Design_Reference-lightgrey?style=flat-square)
 ![Project Phase: Design & Feasibility Study](https://img.shields.io/badge/Phase-Design_&_Feasibility_Study-yellow?style=flat-square)
 ![Personal Project](https://img.shields.io/badge/Type-Personal_·_Home_Lab-blueviolet?style=flat-square)
 ![No Warranty](https://img.shields.io/badge/Warranty-Use_at_Own_Risk-lightgrey?style=flat-square)
@@ -52,7 +52,7 @@ This is a **personal / home lab project**. It is in a **pre-alpha research and d
 graph TD
     EXT["Remote Client / Tailscale User"] -->|Encrypted WireGuard| TS["Tailscale Mesh"]
 
-    subgraph PVE_Host ["Proxmox VE 9.x Node / Dell Optiplex"]
+    subgraph PVE_Host ["Proposed Proxmox VE 9.x Node / Hardware Target"]
         TS -->|Port 8006| PVE_GUI["Proxmox Web GUI"]
         TS -->|Port 80| PROXY["Nginx Reverse Proxy"]
 
@@ -81,7 +81,7 @@ graph TD
 
 ## 📄 Description and Context
 
-A proposed single-node Proxmox VE home-lab design for a Dell Optiplex 3060-class system. It describes a virtual-machine layer alongside an application stack based on Odoo, PostgreSQL, automation, and media services, using unprivileged LXC containers, resource limits, and private-network access. These components are documented as a design; they have not been validated together on a deployed host.
+The original design targeted a single-node Proxmox VE home lab on Dell Optiplex 3060-class hardware. It describes a virtual-machine layer alongside an application stack based on Odoo, PostgreSQL, automation, and media services, using unprivileged LXC containers, resource limits, and private-network access. The target hardware was never acquired for this project, and the design has not been validated on a deployed host.
 
 IaC artefacts live as real files in `docker/`, `proxmox/`, and `scripts/`. Each major area keeps its own README so the knowledge graph can scale without overloading this root page.
 
@@ -91,7 +91,7 @@ IaC artefacts live as real files in `docker/`, `proxmox/`, and `scripts/`. Each 
 
 | Area                               | Description                                                             |
 | ---------------------------------- | ----------------------------------------------------------------------- |
-| [MANUAL.md](MANUAL.md)             | English step-by-step deployment tutorial (Dell Optiplex)                |
+| [MANUAL.md](MANUAL.md)             | Unvalidated reference procedure for the original hardware proposal       |
 | [docs/](docs/README.md)            | Architecture, hardware, resource budget, host tuning, disaster recovery |
 | [docker/](docker/README.md)        | Odoo + AI + PostgreSQL Compose stack (canonical)                        |
 | [proxmox/](proxmox/README.md)      | LXC container profiles and Tailscale network configuration              |
